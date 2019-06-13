@@ -39,7 +39,8 @@
     <option name="compatibility:primary-abi-only" value="true" />
 
     <!-- Include cts-instant setup -->
-    <include name="cts-instant-setup" />
+    <include name="cts-instant-option-setup" />
+    <!-- Do not include cts-instant-filter-setup. Otherwise retry includes all instant tests.  -->
 
     <option name="plan" value="cts-instant-retry" />
     <option name="test-tag" value="cts-instant" />

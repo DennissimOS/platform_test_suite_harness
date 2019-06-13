@@ -192,6 +192,8 @@ public class BusinessLogic {
                 return "service account is not authorized to access information for this device. "
                         + "Please verify device properties are set correctly and account "
                         + "permissions are configured to the Business Logic Api.";
+            case NO_DEVICE_INFO:
+                return "unable to read device info files. Retry without --skip-device-info flag.";
             default:
                 return "something went wrong, please try again.";
         }
@@ -334,7 +336,8 @@ public class BusinessLogic {
         UNKNOWN,
         NOT_AUTHENTICATED,
         NOT_AUTHORIZED,
-        AUTHORIZED
+        AUTHORIZED,
+        NO_DEVICE_INFO
     }
 
 }

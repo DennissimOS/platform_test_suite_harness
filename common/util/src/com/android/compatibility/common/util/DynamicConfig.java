@@ -80,7 +80,7 @@ public class DynamicConfig {
             String val = mDynamicConfigMap.get(REMOTE_CONFIG_REQUIRED_KEY).get(0);
             return Boolean.parseBoolean(val);
         }
-        return false;
+        return true; // require remote configuration by default
     }
 
     public boolean remoteConfigRetrieved() {

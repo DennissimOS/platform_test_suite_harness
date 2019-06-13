@@ -78,6 +78,9 @@
     <option name="compatibility:exclude-filter" value="CtsOpenGlPerfTestCases android.openglperf.cts.GlAppSwitchTest#testGlActivitySwitchingFast" />
     <option name="compatibility:exclude-filter" value="CtsOpenGlPerfTestCases android.openglperf.cts.GlAppSwitchTest#testGlActivitySwitchingSlow" />
 
+    <!-- b/113071420-->
+    <option name="compatibility:exclude-filter" value="x86 CtsPerfettoTestCases PerfettoTest#TestFtraceProducer" />
+
     <!-- b/18461670 -->
     <option name="compatibility:exclude-filter" value="CtsSecurityTestCases android.security.cts.AudioPolicyBinderTest#test_getStreamVolumeLeak" />
     <option name="compatibility:exclude-filter" value="CtsSecurityTestCases android.security.cts.AudioPolicyBinderTest#test_isStreamActive" />
@@ -93,7 +96,10 @@
     <option name="compatibility:exclude-filter" value="CtsTelecomTestCases android.telecom.cts.WiredHeadsetTest" />
 
     <!-- b/62302163 -->
-    <option name="compatibility:exclude-filter" value="CtsSecurityHostTestCases android.security.cts.Poc17_04#testPocCVE_2017_0564" />
+    <option name="compatibility:exclude-filter" value="CtsSecurityBulletinHostTestCases android.security.cts.Poc17_04#testPocCVE_2017_0564" />
+
+    <!-- b/72460579 -->
+    <option name="compatibility:exclude-filter" value="CtsSecurityBulletinHostTestCases android.security.cts.Poc17_05#testPocCVE_2017_0630" />
 
     <!-- b/27873815 -->
     <option name="compatibility:exclude-filter" value="arm64-v8a CtsRenderscriptLegacyTestCases" />
@@ -206,9 +212,13 @@
     <!-- b/80309889 -->
     <option name="compatibility:exclude-filter" value="CtsStatsdHostTestCases android.cts.statsd.atom.UidAtomTests#testCpuActiveTime" />
 
-    <!-- b/110268476 -->
-    <option name="compatibility:exclude-filter" value="CtsDevicePolicyManagerTestCases com.android.cts.devicepolicy.MixedManagedProfileOwnerTestApi25#testResetPasswordFbe" />
-
     <!-- b/110354076 -->
     <option name="compatibility:exclude-filter" value="CtsDevicePolicyManagerTestCases com.android.cts.devicepolicy.DeviceOwnerTest#testCreateAndManageUser_DontSkipSetupWizard" />
+
+    <!-- b/112125308 -->
+    <option name="compatibility:exclude-filter" value="CtsActivityManagerDeviceTestCases android.server.am.ActivityManagerActivityVisibilityTests#testTurnScreenOnAttrNoLockScreen" />
+
+    <!-- b/112688380 -->
+    <option name="compatibility:exclude-filter" value="CtsActivityManagerDeviceTestCases android.server.am.ActivityManagerAppConfigurationTests#testAppOrientationRequestConfigClears" />
+    <option name="compatibility:exclude-filter" value="CtsActivityManagerDeviceTestCases android.server.am.ActivityManagerAppConfigurationTests#testTaskCloseRestoreFreeOrientation" />
 </configuration>

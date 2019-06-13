@@ -16,7 +16,6 @@
 
 package com.android.compatibility.common.tradefed.targetprep;
 
-import com.android.compatibility.common.tradefed.testtype.CompatibilityTest;
 import com.android.compatibility.common.util.DeviceInfo;
 import com.android.compatibility.common.util.DevicePropertyInfo;
 import com.android.tradefed.build.IBuildInfo;
@@ -40,6 +39,9 @@ import java.util.Map.Entry;
  * An {@link ApkInstrumentationPreparer} that collects device info.
  */
 public class DeviceInfoCollector extends ApkInstrumentationPreparer implements ITestLoggerReceiver {
+
+    public static final String DEVICE_INFO_DIR = "device_info_dir";
+    public static final String SKIP_DEVICE_INFO_OPTION = "skip-device-info";
 
     private static final String ABI = "ro.product.cpu.abi";
     private static final String ABI2 = "ro.product.cpu.abi2";
@@ -66,7 +68,7 @@ public class DeviceInfoCollector extends ApkInstrumentationPreparer implements I
 
     private static final String PREFIX_TAG = "cts:build_";
 
-    @Option(name = CompatibilityTest.SKIP_DEVICE_INFO_OPTION,
+    @Option(name = SKIP_DEVICE_INFO_OPTION,
             shortName = 'd',
             description = "Whether device info collection should be skipped")
     private boolean mSkipDeviceInfo = false;
@@ -82,6 +84,7 @@ public class DeviceInfoCollector extends ApkInstrumentationPreparer implements I
     private String mTempDir;
 
     private ITestLogger mLogger;
+    private File deviceInfoDir = null;
 
     public DeviceInfoCollector() {
         mWhen = When.BEFORE;
@@ -105,7 +108,6 @@ public class DeviceInfoCollector extends ApkInstrumentationPreparer implements I
             return;
         }
         run(device, buildInfo);
-        File deviceInfoDir = null;
         try {
             deviceInfoDir = FileUtil.createTempDir(DeviceInfo.RESULT_DIR_NAME);
             if (device.pullDir(mSrcDir, deviceInfoDir)) {
@@ -114,15 +116,21 @@ public class DeviceInfoCollector extends ApkInstrumentationPreparer implements I
                         mLogger.testLog(deviceInfoFile.getName(), LogDataType.TEXT, source);
                     }
                 }
+                buildInfo.setFile(DEVICE_INFO_DIR, deviceInfoDir, /** version */ "v1");
             } else {
                 CLog.e("Failed to pull device-info files from device %s", device.getSerialNumber());
             }
         } catch (IOException e) {
             CLog.e("Failed to pull device-info files from device %s", device.getSerialNumber());
             CLog.e(e);
-        } finally {
-            FileUtil.recursiveDelete(deviceInfoDir);
         }
+    }
+
+    @Override
+    public void tearDown(ITestDevice device, IBuildInfo buildInfo, Throwable e)
+            throws DeviceNotAvailableException {
+        FileUtil.recursiveDelete(deviceInfoDir);
+        super.tearDown(device, buildInfo, e);
     }
 
     @Override

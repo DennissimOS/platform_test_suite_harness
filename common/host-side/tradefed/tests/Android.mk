@@ -41,7 +41,7 @@ LOCAL_MODULE := compatibility-tradefed-tests
 
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_STATIC_JAVA_LIBRARIES := easymock
+LOCAL_STATIC_JAVA_LIBRARIES := easymock objenesis-host mockito-host
 
 LOCAL_JAVA_LIBRARIES := tradefed compatibility-mock-tradefed junit-host compatibility-host-util
 

@@ -18,7 +18,13 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
-LOCAL_JAVA_LIBRARIES := compatibility-host-util easymock junit-host json-prebuilt tradefed
+LOCAL_STATIC_JAVA_LIBRARIES := objenesis-host mockito-host
+LOCAL_JAVA_LIBRARIES := \
+    compatibility-host-util \
+    easymock \
+    junit-host \
+    json-prebuilt \
+    tradefed
 
 LOCAL_MODULE := compatibility-host-util-tests
 

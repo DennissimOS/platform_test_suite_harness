@@ -118,6 +118,10 @@ public class RetryFactoryTestTest {
                 // do nothing
             }
             @Override
+            public void setBuildInfoRetryCommand(IBuildInfo info) {
+                // do nothing
+            }
+            @Override
             public void populateFiltersBySubPlan() {
                 // do nothing
             }
